@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B967ECC6-5D34-4F0A-94B6-AA77D59E5028}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cabinet.Bridge.WcfService</RootNamespace>
+    <AssemblyName>Cabinet.Bridge.WcfService</AssemblyName>
+    <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <XsdCodeGenEnabled>True</XsdCodeGenEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Cabinet.Bridge.WcfService.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Deprecated\AttrTypeService.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Cabinet\WSCabinetCreateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Cabinet\WSCabinetDeleteResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Cabinet\WSCabinetReadResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Cabinet\WSCabinetSearchResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Cabinet\WSCabinetUpdateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\EqptRoom\WSEqptRoomCreateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\EqptRoom\WSEqptRoomDeleteResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\EqptRoom\WSEqptRoomReadResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\EqptRoom\WSEqptRoomSearchResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\EqptRoom\WSEqptRoomUpdateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Region\WSRegionDeleteResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Region\WSRegionUpdateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Region\WSRegionSearchResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Region\WSRegionReadResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\Region\WSRegionCreateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\VolClass\WSVolClassCreateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\VolClass\WSVolClassDeleteResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\VolClass\WSVolClassReadResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\VolClass\WSVolClassSearchResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\CabTree\VolClass\WSVolClassUpdateResponse.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\WSResponseBase.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\WSResponseErrorBase.cs" />
+    <Compile Include="CommonEntity\WebserviceResponse\WSResponseSuccessBase.cs" />
+    <Compile Include="Deprecated\IAttrTypeService.cs" />
+    <Compile Include="IWorkInstructionService.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceBase.cs" />
+    <Compile Include="ServiceBusinessImplBase.cs" />
+    <Compile Include="Deprecated\CabTreeService.cs" />
+    <Compile Include="CommonEntity\WcfBusinessResponse.cs" />
+    <Compile Include="CommonEntity\WcfMessage.cs" />
+    <Compile Include="Deprecated\ICabTreeService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Deprecated\RegionBusinessService.cs" />
+    <Compile Include="WcfServer.cs" />
+    <Compile Include="Web References\WebComm\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WorkInstructionServiceBusinessImpl.cs" />
+    <Compile Include="WorkInstructionService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\services.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\bindings.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\behaviors.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WebComm\CubService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\WebComm\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WebComm\WebServerService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonModuleEntry\CommonModuleEntry.csproj">
+      <Project>{1ad78548-b704-4089-810e-ca3ad054655b}</Project>
+      <Name>CommonModuleEntry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\CommonEntity\CommonEntity.csproj">
+      <Project>{c4f6b129-a8f4-4178-a270-21ca79c4636c}</Project>
+      <Name>CommonEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utility\Utility.csproj">
+      <Project>{a532a29f-9292-4d18-bb95-96a6af2643a7}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CommonEntity\WebserviceResponse\Device\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.136.122.134:8089/CubService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WebComm\</RelPath>
+      <UpdateFromURL>http://10.136.122.134:8089/CubService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Cabinet_Bridge_WcfService_WebComm_WebServerService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
+        <WcfProjectProperties>
+          <AutoStart>True</AutoStart>
+        </WcfProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
