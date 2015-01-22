@@ -22,7 +22,7 @@ namespace Cabinet.Demo.ClientConsole
                 ch = Console.ReadKey();
                 switch (ch.Key)
                 {
-                    case ConsoleKey.S: s.send("123456");
+                    case ConsoleKey.S: //s.send("123456");
                         break;
                     default:
                         break;

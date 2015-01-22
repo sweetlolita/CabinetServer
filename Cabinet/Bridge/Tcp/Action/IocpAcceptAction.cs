@@ -5,11 +5,12 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using Cabinet.Utility;
+using Cabinet.Bridge.Tcp.CommonEntity;
 
 namespace Cabinet.Bridge.Tcp.Action
 {
     class IocpAcceptAction : IocpActionBase
-    {
+    { 
         private Socket listenerSocket { get; set; }
         private IPEndPoint listenerEndPoint { get; set; }
         private bool continousAccpet { get; set; }
@@ -24,13 +25,18 @@ namespace Cabinet.Bridge.Tcp.Action
             
         }
 
+        
+
         protected sealed override void onIocpEvent(bool isSuccess, out bool continousAsyncCall)
         {
             if (isSuccess)
             {
-                if (iocpEventArgs.AcceptSocket.Connected)
+                Socket acceptedSocket = iocpEventArgs.AcceptSocket;
+                if (acceptedSocket.Connected)
                 {
-                    onAcceptedAction(iocpEventArgs.AcceptSocket);
+
+                    SocketOption.enableKeepAlive(acceptedSocket);
+                    onAcceptedAction(acceptedSocket);
                 }
             }
             // Socket must be cleared since the context object is being reused.

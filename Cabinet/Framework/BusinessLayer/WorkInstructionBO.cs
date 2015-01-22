@@ -113,6 +113,15 @@ namespace Cabinet.Framework.BusinessLayer
                     case UpdateWiStatusVO.fail:
                         wcfServiceModuleEntry.updateWiStatusAsFail(updateWiStatusVO.workInstructionGuid);
                         break;
+                    case UpdateWiStatusVO.delivered:
+                        wcfServiceModuleEntry.updateWiStatusAsDelivered(updateWiStatusVO.workInstructionGuid);
+                        break;
+                    case UpdateWiStatusVO.checked_:
+                        wcfServiceModuleEntry.updateWiStatusAsChecked(updateWiStatusVO.workInstructionGuid);
+                        break;
+                    case UpdateWiStatusVO.internalServerError:
+                        wcfServiceModuleEntry.updateWiStatusAsInternalServerError(updateWiStatusVO.workInstructionGuid);
+                        break;
                 }
             }
             catch (System.Exception ex)

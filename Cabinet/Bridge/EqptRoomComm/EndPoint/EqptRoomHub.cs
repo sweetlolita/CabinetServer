@@ -96,7 +96,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             }
             else
             {
-                tcpServer.sendData(sessionGuid, data, offset, count);
+                tcpServer.send(sessionGuid, data, offset, count);
             }
         }
 

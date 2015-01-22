@@ -12,5 +12,8 @@ namespace Cabinet.Framework.CommonModuleEntry
         void updateWiStatusAsProceeding(Guid wiGuid);
         void updateWiStatusAsComplete(Guid wiGuid);
         void updateWiStatusAsFail(Guid wiGuid);
+        void updateWiStatusAsDelivered(Guid wiGuid);
+        void updateWiStatusAsChecked(Guid wiGuid);
+        void updateWiStatusAsInternalServerError(Guid wiGuid);
     }
 }

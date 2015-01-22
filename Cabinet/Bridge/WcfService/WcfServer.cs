@@ -16,6 +16,9 @@ namespace Cabinet.Bridge.WcfService
         private static int contractedWiStatusProceeding = 1;
         private static int contractedWiStatusComplete = 2;
         private static int contractedWiStatusFail = 3;
+        private static int contractedWiStatusDelivered = 4;
+        private static int contractedWiStatusChecked = 5;
+        private static int contractedWiStatusInternalServerError = 6;
         public WcfServer()
         {
             serviceHost = new ServiceHost(typeof(WorkInstructionService));
@@ -85,6 +88,22 @@ namespace Cabinet.Bridge.WcfService
         public void updateWiStatusAsFail(Guid wiGuid)
         {
             reportWiStatus(wiGuid, contractedWiStatusFail);
+        }
+
+
+        public void updateWiStatusAsDelivered(Guid wiGuid)
+        {
+            reportWiStatus(wiGuid, contractedWiStatusDelivered);
+        }
+
+        public void updateWiStatusAsChecked(Guid wiGuid)
+        {
+            reportWiStatus(wiGuid, contractedWiStatusChecked);
+        }
+
+        public void updateWiStatusAsInternalServerError(Guid wiGuid)
+        {
+            reportWiStatus(wiGuid, contractedWiStatusInternalServerError);
         }
     }
 }

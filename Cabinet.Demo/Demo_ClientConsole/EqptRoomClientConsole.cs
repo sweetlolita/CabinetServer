@@ -6,6 +6,7 @@ using Cabinet.Utility;
 using Cabinet.Bridge.EqptRoomComm.EndPoint;
 using Cabinet.Framework.CommonEntity;
 using Cabinet.Bridge.EqptRoomComm.Protocol.PayloadEntity;
+using System.Threading;
 
 namespace Cabinet.Demo.ClientConsole
 {
@@ -19,7 +20,9 @@ namespace Cabinet.Demo.ClientConsole
             s = new EqptRoomClient(this, 
                 "10.31.31.31", 6382, "10.31.31.31", 8135);
             s.start();
-            
+            Thread.Sleep(2000);
+            s.start();
+
             ConsoleKeyInfo ch;
             do
             {
@@ -106,8 +109,7 @@ namespace Cabinet.Demo.ClientConsole
         public void onEqptRoomHubCommunicationError(string errorMessage)
         {
             Logger.error("server error!!!  {0}", errorMessage);
-            s.stop();
-            s.start();
+
         }
     }
 

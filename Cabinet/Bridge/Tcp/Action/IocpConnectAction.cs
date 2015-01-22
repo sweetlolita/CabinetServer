@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Sockets;
 using System.Net;
+using Cabinet.Bridge.Tcp.CommonEntity;
 
 namespace Cabinet.Bridge.Tcp.Action
 {
@@ -29,6 +30,7 @@ namespace Cabinet.Bridge.Tcp.Action
         {
             if(isSuccess)
             {
+                SocketOption.enableKeepAlive(clientSocket);
                 onConnectedAction(clientSocket);
             }
             continousAsyncCall = false;
@@ -37,6 +39,7 @@ namespace Cabinet.Bridge.Tcp.Action
         public void connect()
         {
             clientSocket = new Socket(clientEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            
             iocpAsyncDelegate = new IocpAsyncDelegate(clientSocket.ConnectAsync);
             iocpEventArgs.RemoteEndPoint = serverEndPoint;
             iocpOperation();

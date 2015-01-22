@@ -93,7 +93,8 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             Register registerEntity = new Register();
             registerEntity.eqptRoomGuid = eqptRoomGuid;
             RegisterMessage registerMessage = new RegisterMessage(registerEntity);
-            tcpClient.send(registerMessage.rawMessage());
+            byte[] registerBytes = registerMessage.rawBytes();
+            tcpClient.send(registerBytes, 0, registerBytes.Length);
             return registerEntity.trasactionGuid;
         }
 
@@ -103,7 +104,8 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             updateWiStatusTransactionVO.eqptRoomGuid = eqptRoomGuid;
             updateWiStatusTransactionVO.updateWiStatusVO = updateWiStatusVO;
             UpdateWiStatusMessage workInstructionReportMessage = new UpdateWiStatusMessage(updateWiStatusTransactionVO);
-            tcpClient.send(workInstructionReportMessage.rawMessage());
+            byte[] updateWiStatusBytes = workInstructionReportMessage.rawBytes();
+            tcpClient.send(updateWiStatusBytes, 0, updateWiStatusBytes.Length);
             return updateWiStatusTransactionVO.trasactionGuid;
         }
 
@@ -113,7 +115,8 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             reportWiProcedureResultTransactionVO.eqptRoomGuid = eqptRoomGuid;
             reportWiProcedureResultTransactionVO.reportWiProcedureResultVO = reportWiProcedureResultVO;
             ReportWiProcedureResultMessage workInstructionProcedureReportMessage = new ReportWiProcedureResultMessage(reportWiProcedureResultTransactionVO);
-            tcpClient.send(workInstructionProcedureReportMessage.rawMessage());
+            byte[] reportWiProcedureResultBytes = workInstructionProcedureReportMessage.rawBytes();
+            tcpClient.send(reportWiProcedureResultBytes, 0, reportWiProcedureResultBytes.Length);
             return reportWiProcedureResultTransactionVO.trasactionGuid;
         }
 
