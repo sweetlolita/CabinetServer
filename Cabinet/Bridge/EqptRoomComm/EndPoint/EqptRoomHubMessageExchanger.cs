@@ -37,12 +37,50 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             onUpdateWiStatus(sessionId, updateWiStatusTransactionVO);
         }
 
-        protected abstract void doDelivery(WorkInstructionDeliveryVO workInstructionDeliveryVO);
+        void MessageObserver.onUpdateCabinetStatus(Guid sessionId, UpdateCabinetStatusTransactionVO updateCabinetStatusTransactionVO)
+        {
+            onUpdateCabinetStatus(sessionId, updateCabinetStatusTransactionVO);
+        }
 
+        void MessageObserver.onSendCabinetAuthorizationLog(Guid sessionId, SendCabinetAuthorizationLogTransactionVO sendCabinetAuthorizationLogTransactionVO)
+        {
+            onSendCabinetAuthorizationLog(sessionId, sendCabinetAuthorizationLogTransactionVO);
+        }
+
+        void MessageObserver.onRequestForCabinetList(Guid sessionId, RequestForCabinetListTransactionVO requestForCabinetListTransactionVO)
+        {
+            onRequestForCabinetList(sessionId, requestForCabinetListTransactionVO);
+        }
+
+        void MessageObserver.onDeliveryCabinetList(Guid sessionId, DeliveryCabinetListVO deliveryCabinetListVO)
+        {
+            throw new EqptRoomCommException("server not supported.");
+        }
+
+        void MessageObserver.onDeliverySystemUpdate(Guid sessionId, DeliverySystemUpdateVO deliverySystemUpdateVO)
+        {
+            throw new EqptRoomCommException("server not supported.");
+        }
+
+        protected abstract void doDelivery(WorkInstructionDeliveryVO workInstructionDeliveryVO);
+        protected abstract void doDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO);
+        protected abstract void doDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO);
+   
         protected abstract void onRegisterMessage(Guid sessionId, Register register);
 
         protected abstract void onReportWiProcedureResult(Guid sessionId, ReportWiProcedureResultTransactionVO reportWiProcedureResultTransactionVO);
 
         protected abstract void onUpdateWiStatus(Guid sessionId, UpdateWiStatusTransactionVO updateWiStatusTransactionVO);
+
+        protected abstract void onUpdateCabinetStatus(Guid sessionId, UpdateCabinetStatusTransactionVO updateCabinetStatusTransactionVO);
+
+        protected abstract void onSendCabinetAuthorizationLog(Guid sessionId, SendCabinetAuthorizationLogTransactionVO sendCabinetAuthorizationLogTransactionVO);
+
+        protected abstract void onRequestForCabinetList(Guid sessionId, RequestForCabinetListTransactionVO requestForCabinetListTransactionVO);
+
+
+
+
+
     }
 }

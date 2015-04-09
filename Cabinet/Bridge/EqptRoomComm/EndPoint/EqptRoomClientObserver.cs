@@ -14,5 +14,8 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
         void onEqptRoomHubCommunicationError(string errorMessage);
         void onAcknowledge(Acknowledge acknowledge);
         void onWorkInstrucionDelivery(WorkInstructionDeliveryVO workInstructionDeliveryVO);
+        void onDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO);
+        void onDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO);
+
     }
 }

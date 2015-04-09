@@ -73,6 +73,9 @@
     <Compile Include="CommonEntity\WebserviceResponse\WSResponseErrorBase.cs" />
     <Compile Include="CommonEntity\WebserviceResponse\WSResponseSuccessBase.cs" />
     <Compile Include="Deprecated\IAttrTypeService.cs" />
+    <Compile Include="EqptRoomService.cs" />
+    <Compile Include="EqptRoomServiceBusinessImpl.cs" />
+    <Compile Include="IEqptRoomService.cs" />
     <Compile Include="IWorkInstructionService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -146,10 +149,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.136.122.134:8089/CubService%3fwsdl">
+    <WebReferenceUrl Include="http://10.148.219.206:8089/CubService%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WebComm\</RelPath>
-      <UpdateFromURL>http://10.136.122.134:8089/CubService%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://10.148.219.206:8089/CubService%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -157,6 +160,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Cabinet_Bridge_WcfService_WebComm_WebServerService</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

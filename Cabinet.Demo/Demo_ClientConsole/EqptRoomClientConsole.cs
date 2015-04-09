@@ -111,6 +111,17 @@ namespace Cabinet.Demo.ClientConsole
             Logger.error("server error!!!  {0}", errorMessage);
 
         }
+
+
+        public void onDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void onDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     

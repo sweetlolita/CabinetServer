@@ -29,6 +29,12 @@ namespace Cabinet.Bridge.WcfService.WebComm {
     [System.Web.Services.WebServiceBindingAttribute(Name="WebServerPortBinding", Namespace="http://tempuri.org/")]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(updateWorkInstrStatusResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(updateWorkInstrStatus))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(getCabInfoItemResponse))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(getCabInfoItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(updateCabStatusResponse))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(updateCabStatus))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(updateCabCardInfoResponse))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(updateCabCardInfo))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(executeResultInfoResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(executeResultInfo))]
     public partial class WebServerService : System.Web.Services.Protocols.SoapHttpClientProtocol {
@@ -36,6 +42,12 @@ namespace Cabinet.Bridge.WcfService.WebComm {
         private System.Threading.SendOrPostCallback updateWorkInstrStatusOperationCompleted;
         
         private System.Threading.SendOrPostCallback executeResultInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateCabStatusOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getCabInfoItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateCabCardInfoOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -80,6 +92,15 @@ namespace Cabinet.Bridge.WcfService.WebComm {
         
         /// <remarks/>
         public event executeResultInfoCompletedEventHandler executeResultInfoCompleted;
+        
+        /// <remarks/>
+        public event updateCabStatusCompletedEventHandler updateCabStatusCompleted;
+        
+        /// <remarks/>
+        public event getCabInfoItemCompletedEventHandler getCabInfoItemCompleted;
+        
+        /// <remarks/>
+        public event updateCabCardInfoCompletedEventHandler updateCabCardInfoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -142,6 +163,100 @@ namespace Cabinet.Bridge.WcfService.WebComm {
             if ((this.executeResultInfoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.executeResultInfoCompleted(this, new executeResultInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public object updateCabStatus([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string arg0, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int arg1) {
+            object[] results = this.Invoke("updateCabStatus", new object[] {
+                        arg0,
+                        arg1});
+            return ((object)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateCabStatusAsync(string arg0, int arg1) {
+            this.updateCabStatusAsync(arg0, arg1, null);
+        }
+        
+        /// <remarks/>
+        public void updateCabStatusAsync(string arg0, int arg1, object userState) {
+            if ((this.updateCabStatusOperationCompleted == null)) {
+                this.updateCabStatusOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateCabStatusOperationCompleted);
+            }
+            this.InvokeAsync("updateCabStatus", new object[] {
+                        arg0,
+                        arg1}, this.updateCabStatusOperationCompleted, userState);
+        }
+        
+        private void OnupdateCabStatusOperationCompleted(object arg) {
+            if ((this.updateCabStatusCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateCabStatusCompleted(this, new updateCabStatusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public object getCabInfoItem([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string arg0) {
+            object[] results = this.Invoke("getCabInfoItem", new object[] {
+                        arg0});
+            return ((object)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getCabInfoItemAsync(string arg0) {
+            this.getCabInfoItemAsync(arg0, null);
+        }
+        
+        /// <remarks/>
+        public void getCabInfoItemAsync(string arg0, object userState) {
+            if ((this.getCabInfoItemOperationCompleted == null)) {
+                this.getCabInfoItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCabInfoItemOperationCompleted);
+            }
+            this.InvokeAsync("getCabInfoItem", new object[] {
+                        arg0}, this.getCabInfoItemOperationCompleted, userState);
+        }
+        
+        private void OngetCabInfoItemOperationCompleted(object arg) {
+            if ((this.getCabInfoItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getCabInfoItemCompleted(this, new getCabInfoItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public object updateCabCardInfo([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string arg0, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string arg1) {
+            object[] results = this.Invoke("updateCabCardInfo", new object[] {
+                        arg0,
+                        arg1});
+            return ((object)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateCabCardInfoAsync(string arg0, string arg1) {
+            this.updateCabCardInfoAsync(arg0, arg1, null);
+        }
+        
+        /// <remarks/>
+        public void updateCabCardInfoAsync(string arg0, string arg1, object userState) {
+            if ((this.updateCabCardInfoOperationCompleted == null)) {
+                this.updateCabCardInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateCabCardInfoOperationCompleted);
+            }
+            this.InvokeAsync("updateCabCardInfo", new object[] {
+                        arg0,
+                        arg1}, this.updateCabCardInfoOperationCompleted, userState);
+        }
+        
+        private void OnupdateCabCardInfoOperationCompleted(object arg) {
+            if ((this.updateCabCardInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateCabCardInfoCompleted(this, new updateCabCardInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -212,6 +327,164 @@ namespace Cabinet.Bridge.WcfService.WebComm {
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public int arg1 {
+            get {
+                return this.arg1Field;
+            }
+            set {
+                this.arg1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1015")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class getCabInfoItemResponse {
+        
+        private object returnField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public object @return {
+            get {
+                return this.returnField;
+            }
+            set {
+                this.returnField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1015")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class getCabInfoItem {
+        
+        private string arg0Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg0 {
+            get {
+                return this.arg0Field;
+            }
+            set {
+                this.arg0Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1015")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class updateCabStatusResponse {
+        
+        private object returnField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public object @return {
+            get {
+                return this.returnField;
+            }
+            set {
+                this.returnField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1015")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class updateCabStatus {
+        
+        private string arg0Field;
+        
+        private int arg1Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg0 {
+            get {
+                return this.arg0Field;
+            }
+            set {
+                this.arg0Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int arg1 {
+            get {
+                return this.arg1Field;
+            }
+            set {
+                this.arg1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1015")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class updateCabCardInfoResponse {
+        
+        private object returnField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public object @return {
+            get {
+                return this.returnField;
+            }
+            set {
+                this.returnField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1015")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class updateCabCardInfo {
+        
+        private string arg0Field;
+        
+        private string arg1Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg0 {
+            get {
+                return this.arg0Field;
+            }
+            set {
+                this.arg0Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg1 {
             get {
                 return this.arg1Field;
             }
@@ -317,6 +590,84 @@ namespace Cabinet.Bridge.WcfService.WebComm {
         private object[] results;
         
         internal executeResultInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public object Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((object)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void updateCabStatusCompletedEventHandler(object sender, updateCabStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateCabStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateCabStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public object Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((object)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void getCabInfoItemCompletedEventHandler(object sender, getCabInfoItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getCabInfoItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getCabInfoItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public object Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((object)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void updateCabCardInfoCompletedEventHandler(object sender, updateCabCardInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateCabCardInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateCabCardInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

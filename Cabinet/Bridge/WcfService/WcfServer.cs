@@ -19,6 +19,11 @@ namespace Cabinet.Bridge.WcfService
         private static int contractedWiStatusDelivered = 4;
         private static int contractedWiStatusChecked = 5;
         private static int contractedWiStatusInternalServerError = 6;
+
+        private static int contractedCabinetStatusIdle = 1;
+        private static int contractedCabinetStatusBusy = 3;
+        private static int contractedCabinetStatusReady = 2;
+        private static int contractedCabinetStatusError = 4;
         public WcfServer()
         {
             serviceHost = new ServiceHost(typeof(WorkInstructionService));
@@ -104,6 +109,69 @@ namespace Cabinet.Bridge.WcfService
         public void updateWiStatusAsInternalServerError(Guid wiGuid)
         {
             reportWiStatus(wiGuid, contractedWiStatusInternalServerError);
+        }
+
+        private void reportCabinetStatus(Guid cabinetGuid, int cabinetStatus)
+        {
+            Logger.info("WcfServer: AxisServer =====> WcfServer.");
+            Logger.info("WcfServer: WcfServer - - -> Webservice.");
+            WebComm.WebServerService webComm = new WebComm.WebServerService();
+            webComm.updateCabStatus(cabinetGuid.ToString(), cabinetStatus);
+            Logger.info("WcfServer: <3<3<3 Wcf Client Transaction Completed.");
+            Logger.info("WcfServer: WcfServer =====> Webservice.");
+        }
+
+        public void updateCabinetStatusAsIdle(Guid cabinetGuid)
+        {
+            reportCabinetStatus(cabinetGuid, contractedCabinetStatusIdle);
+        }
+
+        public void updateCabinetStatusAsBusy(Guid cabinetGuid)
+        {
+            reportCabinetStatus(cabinetGuid, contractedCabinetStatusBusy);
+        }
+
+        public void updateCabinetStatusAsReady(Guid cabinetGuid)
+        {
+            reportCabinetStatus(cabinetGuid, contractedCabinetStatusReady);
+        }
+
+        public void updateCabinetStatusAsError(Guid cabinetGuid)
+        {
+            reportCabinetStatus(cabinetGuid, contractedCabinetStatusError);
+        }
+
+        public void requestCabinetListByEqptRoom(Guid eqptRoomGuid)
+        {
+            Logger.info("WcfServer: AxisServer =====> WcfServer.");
+            Logger.info("WcfServer: WcfServer - - -> Webservice.");
+            WebComm.WebServerService webComm = new WebComm.WebServerService();
+            webComm.getCabInfoItem(eqptRoomGuid.ToString());
+            Logger.info("WcfServer: <3<3<3 Wcf Client Transaction Completed.");
+            Logger.info("WcfServer: WcfServer =====> Webservice.");
+        }
+
+
+        public void sendCabinetAuthorizationLog(SendCabinetAuthorizationLogVO sendCabinetAuthorizationLogVO)
+        {
+            Logger.info("WcfServer: AxisServer =====> WcfServer.");
+            Logger.info("WcfServer: WcfServer - - -> Webservice.");
+            WebComm.WebServerService webComm = new WebComm.WebServerService();
+            webComm.updateCabCardInfo(sendCabinetAuthorizationLogVO.cabinetGuid.ToString(),
+                sendCabinetAuthorizationLogVO.getListJsonForWebService());
+            Logger.info("WcfServer: <3<3<3 Wcf Client Transaction Completed.");
+            Logger.info("WcfServer: WcfServer =====> Webservice.");
+        }
+
+
+        public void requestForCabinetList(Guid eqptRoomGuid)
+        {
+            Logger.info("WcfServer: AxisServer =====> WcfServer.");
+            Logger.info("WcfServer: WcfServer - - -> Webservice.");
+            WebComm.WebServerService webComm = new WebComm.WebServerService();
+            webComm.getCabInfoItem(eqptRoomGuid.ToString());
+            Logger.info("WcfServer: <3<3<3 Wcf Client Transaction Completed.");
+            Logger.info("WcfServer: WcfServer =====> Webservice.");
         }
     }
 }

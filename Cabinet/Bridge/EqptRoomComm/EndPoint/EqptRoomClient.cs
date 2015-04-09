@@ -78,7 +78,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             }
         }
 
-        protected override void onDeliveryMessage(WorkInstructionDeliveryVO workInstructionDeliveryVO)
+        protected override void onWorkInstrucionDelivery(WorkInstructionDeliveryVO workInstructionDeliveryVO)
         {
             if(eqptRoomClientObserver != null)
             {
@@ -86,6 +86,21 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             }
         }
 
+        protected override void onDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO)
+        {
+            if (eqptRoomClientObserver != null)
+            {
+                eqptRoomClientObserver.onDeliveryCabinetList(deliveryCabinetListVO);
+            }
+        }
+
+        protected override void onDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO)
+        {
+            if (eqptRoomClientObserver != null)
+            {
+                eqptRoomClientObserver.onDeliverySystemUpdate(deliverySystemUpdateVO);
+            }
+        }
 
 
         public override sealed Guid doRegister(Guid eqptRoomGuid)
@@ -109,6 +124,8 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             return updateWiStatusTransactionVO.trasactionGuid;
         }
 
+
+
         public override sealed Guid doReportWiProcedureResult(Guid eqptRoomGuid, ReportWiProcedureResultVO reportWiProcedureResultVO)
         {
             ReportWiProcedureResultTransactionVO reportWiProcedureResultTransactionVO = new ReportWiProcedureResultTransactionVO();
@@ -120,8 +137,37 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             return reportWiProcedureResultTransactionVO.trasactionGuid;
         }
 
+        public override sealed Guid doUpdateCabinetStatus(Guid eqptRoomGuid, UpdateCabinetStatusVO updateCabinetStatusVO)
+        {
+            UpdateCabinetStatusTransactionVO updateCabinetStatusTransactionVO = new UpdateCabinetStatusTransactionVO();
+            updateCabinetStatusTransactionVO.eqptRoomGuid = eqptRoomGuid;
+            updateCabinetStatusTransactionVO.updateCabinetStatusVO = updateCabinetStatusVO;
+            UpdateCabinetStatusMessage updateCabinetStatusMessage = new UpdateCabinetStatusMessage(updateCabinetStatusTransactionVO);
+            byte[] updateCabinetStatusBytes = updateCabinetStatusMessage.rawBytes();
+            tcpClient.send(updateCabinetStatusBytes, 0, updateCabinetStatusBytes.Length);
+            return updateCabinetStatusTransactionVO.trasactionGuid;
+        }
 
+        public override sealed Guid doSendCabinetAuthorizationLog(Guid eqptRoomGuid, SendCabinetAuthorizationLogVO sendCabinetAuthorizationLogVO)
+        {
+            SendCabinetAuthorizationLogTransactionVO sendCabinetAuthorizationLogTransactionVO = new SendCabinetAuthorizationLogTransactionVO();
+            sendCabinetAuthorizationLogTransactionVO.eqptRoomGuid = eqptRoomGuid;
+            sendCabinetAuthorizationLogTransactionVO.sendCabinetAuthorizationLogVO = sendCabinetAuthorizationLogVO;
+            SendCabinetAuthorizationLogMessage sendCabinetAuthorizationLogMessage = new SendCabinetAuthorizationLogMessage(sendCabinetAuthorizationLogTransactionVO);
+            byte[] sendCabinetAuthorizationLogBytes = sendCabinetAuthorizationLogMessage.rawBytes();
+            tcpClient.send(sendCabinetAuthorizationLogBytes, 0, sendCabinetAuthorizationLogBytes.Length);
+            return sendCabinetAuthorizationLogTransactionVO.trasactionGuid;
+        }
 
+        public override sealed Guid doRequestForCabinetList(Guid eqptRoomGuid)
+        {
+            RequestForCabinetListTransactionVO requestForCabinetListTransactionVO = new RequestForCabinetListTransactionVO();
+            requestForCabinetListTransactionVO.eqptRoomGuid = eqptRoomGuid;
+            RequestForCabinetListMessage requestForCabinetListMessage = new RequestForCabinetListMessage(requestForCabinetListTransactionVO);
+            byte[] requestForCabinetListBytes = requestForCabinetListMessage.rawBytes();
+            tcpClient.send(requestForCabinetListBytes, 0, requestForCabinetListBytes.Length);
+            return requestForCabinetListTransactionVO.trasactionGuid;
+        }
 
 
 

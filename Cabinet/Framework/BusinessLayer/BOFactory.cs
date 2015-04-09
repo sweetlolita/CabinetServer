@@ -14,6 +14,10 @@ namespace Cabinet.Framework.BusinessLayer
             {
                 case ("workInstruction"):
                     return new WorkInstructionBO(context);
+                case ("cabinet"):
+                    return new CabinetBO(context);
+                case ("eqptRoom"):
+                    return new EqptRoomBO(context);
                 case ("region"):
                     return new RegionBO(context);
                 default:

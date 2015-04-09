@@ -2,7 +2,7 @@
 <definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="WebServerService" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="http://10.136.122.134:8089/CubService?xsd=1" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://10.148.219.206:8089/CubService?xsd=1" namespace="http://tempuri.org/" />
     </xsd:schema>
   </types>
   <message name="updateWorkInstrStatus">
@@ -17,6 +17,24 @@
   <message name="executeResultInfoResponse">
     <part name="parameters" element="tns:executeResultInfoResponse" />
   </message>
+  <message name="updateCabStatus">
+    <part name="parameters" element="tns:updateCabStatus" />
+  </message>
+  <message name="updateCabStatusResponse">
+    <part name="parameters" element="tns:updateCabStatusResponse" />
+  </message>
+  <message name="getCabInfoItem">
+    <part name="parameters" element="tns:getCabInfoItem" />
+  </message>
+  <message name="getCabInfoItemResponse">
+    <part name="parameters" element="tns:getCabInfoItemResponse" />
+  </message>
+  <message name="updateCabCardInfo">
+    <part name="parameters" element="tns:updateCabCardInfo" />
+  </message>
+  <message name="updateCabCardInfoResponse">
+    <part name="parameters" element="tns:updateCabCardInfoResponse" />
+  </message>
   <portType name="WebServer">
     <operation name="updateWorkInstrStatus">
       <input wsam:Action="http://tempuri.org/WebServer/updateWorkInstrStatusRequest" message="tns:updateWorkInstrStatus" />
@@ -25,6 +43,18 @@
     <operation name="executeResultInfo">
       <input wsam:Action="http://tempuri.org/WebServer/executeResultInfoRequest" message="tns:executeResultInfo" />
       <output wsam:Action="http://tempuri.org/WebServer/executeResultInfoResponse" message="tns:executeResultInfoResponse" />
+    </operation>
+    <operation name="updateCabStatus">
+      <input wsam:Action="http://tempuri.org/WebServer/updateCabStatusRequest" message="tns:updateCabStatus" />
+      <output wsam:Action="http://tempuri.org/WebServer/updateCabStatusResponse" message="tns:updateCabStatusResponse" />
+    </operation>
+    <operation name="getCabInfoItem">
+      <input wsam:Action="http://tempuri.org/WebServer/getCabInfoItemRequest" message="tns:getCabInfoItem" />
+      <output wsam:Action="http://tempuri.org/WebServer/getCabInfoItemResponse" message="tns:getCabInfoItemResponse" />
+    </operation>
+    <operation name="updateCabCardInfo">
+      <input wsam:Action="http://tempuri.org/WebServer/updateCabCardInfoRequest" message="tns:updateCabCardInfo" />
+      <output wsam:Action="http://tempuri.org/WebServer/updateCabCardInfoResponse" message="tns:updateCabCardInfoResponse" />
     </operation>
   </portType>
   <binding name="WebServerPortBinding" type="tns:WebServer">
@@ -47,10 +77,37 @@
         <soap:body use="literal" />
       </output>
     </operation>
+    <operation name="updateCabStatus">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getCabInfoItem">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateCabCardInfo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
   </binding>
   <service name="WebServerService">
     <port name="WebServerPort" binding="tns:WebServerPortBinding">
-      <soap:address location="http://10.136.122.134:8089/CubService" />
+      <soap:address location="http://10.148.219.206:8089/CubService" />
     </port>
   </service>
 </definitions>

@@ -10,5 +10,9 @@ namespace Cabinet.Framework.CommonModuleEntry
     {
         void acknowledge(Guid transactionGuid, Guid eqptRoomGuid, int statusCode, string message);
         void deliveryWorkInstrucion(WorkInstructionDeliveryVO workInstructionDeliveryVO);
+        void deliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO);
+        void deliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO);
+
+
     }
 }

@@ -32,5 +32,10 @@ namespace Cabinet.Utility
             }
             
         }
+
+        public static string objectToJson(object obj)
+        {
+            return JsonConvert.SerializeObject(obj);
+        }
     }
 }

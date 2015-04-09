@@ -64,6 +64,16 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             doDelivery(workInstructionDeliveryVO);
         }
 
+        public void deliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO)
+        {
+            doDeliveryCabinetList(deliveryCabinetListVO);
+        }
+
+        public void deliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO)
+        {
+            doDeliverySystemUpdate(deliverySystemUpdateVO);
+        }
+
         public void acknowledge(Guid transactionGuid, Guid eqptRoomGuid, int statusCode, string message)
         {
             Acknowledge acknowledgeEntity = new Acknowledge(transactionGuid);
@@ -116,6 +126,22 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             byte[] workInstructionDeliveryBytes = workInstructionDeliveryMessage.rawBytes();
             dispatchDataByEqptRoomGuid(workInstructionDeliveryVO.eqptRoomGuid, workInstructionDeliveryBytes, 0, workInstructionDeliveryBytes.Length);
         }
+        protected sealed override void doDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO)
+        {
+            DeliveryCabinetListMessage deliveryCabinetListMessage = new DeliveryCabinetListMessage(deliveryCabinetListVO);
+            byte[] deliveryCabinetListBytes = deliveryCabinetListMessage.rawBytes();
+            dispatchDataByEqptRoomGuid(deliveryCabinetListVO.eqptRoomGuid, deliveryCabinetListBytes, 0, deliveryCabinetListBytes.Length);
+        
+        }
+
+        protected sealed override void doDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO)
+        {
+            DeliverySystemUpdateMessage deliverySystemUpdateMessage = new DeliverySystemUpdateMessage(deliverySystemUpdateVO);
+            byte[] deliverySystemUpdateBytes = deliverySystemUpdateMessage.rawBytes();
+            dispatchDataByEqptRoomGuid(deliverySystemUpdateVO.eqptRoomGuid, deliverySystemUpdateBytes, 0, deliverySystemUpdateBytes.Length);
+        
+        }
+   
 
         protected sealed override void onReportWiProcedureResult(Guid sessionId, ReportWiProcedureResultTransactionVO reportWiProcedureResultTransactionVO)
         {
@@ -127,9 +153,20 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             new WorkInstrucionServiceBusinessImpl().updateWiStatus(updateWiStatusTransactionVO);
         }
 
+        protected sealed override void onUpdateCabinetStatus(Guid sessionId, UpdateCabinetStatusTransactionVO updateCabinetStatusTransactionVO)
+        {
+            new CabinetServiceBusinessImpl().updateCabinetStatus(updateCabinetStatusTransactionVO);
+        }
 
+        protected override void onSendCabinetAuthorizationLog(Guid sessionId, SendCabinetAuthorizationLogTransactionVO sendCabinetAuthorizationLogTransactionVO)
+        {
+            new CabinetServiceBusinessImpl().sendCabinetAuthorizationLog(sendCabinetAuthorizationLogTransactionVO);
+        }
 
-
+        protected override void onRequestForCabinetList(Guid sessionId, RequestForCabinetListTransactionVO requestForCabinetListTransactionVO)
+        {
+            new EqptRoomServiceBusinessImpl().requestForCabinetList(requestForCabinetListTransactionVO);
+        }
 
 
 

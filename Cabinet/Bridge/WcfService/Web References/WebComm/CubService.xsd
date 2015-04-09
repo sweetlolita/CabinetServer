@@ -2,6 +2,12 @@
 <xs:schema xmlns:tns="http://tempuri.org/" targetNamespace="http://tempuri.org/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="executeResultInfo" type="tns:executeResultInfo" />
   <xs:element name="executeResultInfoResponse" type="tns:executeResultInfoResponse" />
+  <xs:element name="getCabInfoItem" type="tns:getCabInfoItem" />
+  <xs:element name="getCabInfoItemResponse" type="tns:getCabInfoItemResponse" />
+  <xs:element name="updateCabCardInfo" type="tns:updateCabCardInfo" />
+  <xs:element name="updateCabCardInfoResponse" type="tns:updateCabCardInfoResponse" />
+  <xs:element name="updateCabStatus" type="tns:updateCabStatus" />
+  <xs:element name="updateCabStatusResponse" type="tns:updateCabStatusResponse" />
   <xs:element name="updateWorkInstrStatus" type="tns:updateWorkInstrStatus" />
   <xs:element name="updateWorkInstrStatusResponse" type="tns:updateWorkInstrStatusResponse" />
   <xs:complexType name="executeResultInfo">
@@ -11,6 +17,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="executeResultInfoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateCabCardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateCabCardInfoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateCabStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateCabStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCabInfoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCabInfoItemResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:anyType" />
     </xs:sequence>

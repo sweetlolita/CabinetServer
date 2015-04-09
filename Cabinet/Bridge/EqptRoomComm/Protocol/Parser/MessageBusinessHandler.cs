@@ -61,7 +61,36 @@ namespace Cabinet.Bridge.EqptRoomComm.Protocol.Parser
                                 messageHandlerObserver.onUpdateWiStatus(sessionId, updateWiStatusTransactionVO);
                                 break;
                             }
-
+                        case "updateCabinetStatus":
+                            {
+                                UpdateCabinetStatusTransactionVO updateCabinetStatusTransactionVO = parser.parseAs<UpdateCabinetStatusTransactionVO>();
+                                messageHandlerObserver.onUpdateCabinetStatus(sessionId, updateCabinetStatusTransactionVO);
+                                break;
+                            }
+                        case "sendCabinetAuthorizationLog":
+                            {
+                                SendCabinetAuthorizationLogTransactionVO sendCabinetAuthorizationLogTransactionVO = parser.parseAs<SendCabinetAuthorizationLogTransactionVO>();
+                                messageHandlerObserver.onSendCabinetAuthorizationLog(sessionId, sendCabinetAuthorizationLogTransactionVO);
+                                break;
+                            }
+                        case "requestForCabinetList":
+                            {
+                                RequestForCabinetListTransactionVO requestForCabinetListTransactionVO = parser.parseAs<RequestForCabinetListTransactionVO>();
+                                messageHandlerObserver.onRequestForCabinetList(sessionId, requestForCabinetListTransactionVO);
+                                break;
+                            }
+                        case "deliveryCabinetList":
+                            {
+                                DeliveryCabinetListVO deliveryCabinetListVO = parser.parseAs<DeliveryCabinetListVO>();
+                                messageHandlerObserver.onDeliveryCabinetList(sessionId, deliveryCabinetListVO);
+                                break;
+                            }
+                        case "deliverySystemUpdate":
+                            {
+                                DeliverySystemUpdateVO deliverySystemUpdateVO = parser.parseAs<DeliverySystemUpdateVO>();
+                                messageHandlerObserver.onDeliverySystemUpdate(sessionId, deliverySystemUpdateVO);
+                                break;
+                            }
                         default:
                             throw new EqptRoomCommException("verb error");
 

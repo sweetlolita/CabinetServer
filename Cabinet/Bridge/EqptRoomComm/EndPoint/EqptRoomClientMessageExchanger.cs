@@ -22,7 +22,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
 
         void MessageObserver.onDelivery(Guid sessionId, WorkInstructionDeliveryVO workInstructionDeliveryVO)
         {
-            onDeliveryMessage(workInstructionDeliveryVO);
+            onWorkInstrucionDelivery(workInstructionDeliveryVO);
         }
 
         void MessageObserver.onReportWiProcedureResult(Guid sessionId, ReportWiProcedureResultTransactionVO reportWiProcedureResultTransactionVO)
@@ -34,16 +34,52 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
         {
             throw new EqptRoomCommException("client not supported.");
         }
+
+        void MessageObserver.onUpdateCabinetStatus(Guid sessionId, UpdateCabinetStatusTransactionVO updateCabinetStatusTransactionVO)
+        {
+            throw new EqptRoomCommException("client not supported.");
+        }
+
+        void MessageObserver.onSendCabinetAuthorizationLog(Guid sessionId, SendCabinetAuthorizationLogTransactionVO sendCabinetAuthorizationLogTransactionVO)
+        {
+            throw new EqptRoomCommException("client not supported.");
+        }
+
+        void MessageObserver.onRequestForCabinetList(Guid sessionId, RequestForCabinetListTransactionVO requestForCabinetListTransactionVO)
+        {
+            throw new EqptRoomCommException("client not supported.");
+        }
+
+        void MessageObserver.onDeliveryCabinetList(Guid sessionId, DeliveryCabinetListVO deliveryCabinetListVO)
+        {
+            onDeliveryCabinetList(deliveryCabinetListVO);
+        }
+
+        void MessageObserver.onDeliverySystemUpdate(Guid sessionId, DeliverySystemUpdateVO deliverySystemUpdateVO)
+        {
+            onDeliverySystemUpdate(deliverySystemUpdateVO);
+        }
+
         public abstract Guid doRegister(Guid eqptRoomGuid);
 
         public abstract Guid doUpdateWiStatus(Guid eqptRoomGuid, UpdateWiStatusVO updateWiStatusVO);
 
         public abstract Guid doReportWiProcedureResult(Guid eqptRoomGuid, ReportWiProcedureResultVO reportWiProcedureResultVO);
 
+        public abstract Guid doUpdateCabinetStatus(Guid eqptRoomGuid, UpdateCabinetStatusVO updateCabinetStatusVO);
+
+        public abstract Guid doSendCabinetAuthorizationLog(Guid eqptRoomGuid, SendCabinetAuthorizationLogVO sendCabinetAuthorizationLogVO);
+        
+        public abstract Guid doRequestForCabinetList(Guid eqptRoomGuid);
+
+
         protected abstract void onAcknowledgeMessage(Acknowledge acknowledge);
 
-        protected abstract void onDeliveryMessage(WorkInstructionDeliveryVO workInstructionDeliveryVO);
+        protected abstract void onWorkInstrucionDelivery(WorkInstructionDeliveryVO workInstructionDeliveryVO);
 
+        protected abstract void onDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO);
+
+        protected abstract void onDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO);
 
 
     }
