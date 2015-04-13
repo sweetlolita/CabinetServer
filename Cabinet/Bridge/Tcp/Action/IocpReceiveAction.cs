@@ -14,7 +14,7 @@ namespace Cabinet.Bridge.Tcp.Action
         private bool continousReceive { get; set; }
         private Action<Descriptor> onReceivedAction { get; set; }
 
-        private const int defaultReceiveBufferSize = 1024 * 4;
+        private const int defaultReceiveBufferSize = 64 * 1024;
 
         public IocpReceiveAction(Action<Descriptor> onReceivedAction, Action<string> onErrorAction)
             : base(onErrorAction)

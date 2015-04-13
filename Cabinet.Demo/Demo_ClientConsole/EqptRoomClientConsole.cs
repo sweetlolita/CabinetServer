@@ -16,11 +16,9 @@ namespace Cabinet.Demo.ClientConsole
         Guid eqptRoomGuid;
         public void entry()
         {
-            eqptRoomGuid = new Guid("C9FB1218-5CB6-461D-A7C1-C23AF3EBEEDD");
-            s = new EqptRoomClient(this, 
-                "10.31.31.31", 6382, "10.31.31.31", 8135);
-            s.start();
-            Thread.Sleep(2000);
+            eqptRoomGuid = new Guid("53840397-DD43-4CD9-9852-0BBA443FF6CD");
+            s = new EqptRoomClient(this,
+                "10.148.219.165", 6382, "10.148.219.165", 8135);
             s.start();
 
             ConsoleKeyInfo ch;
@@ -43,6 +41,45 @@ namespace Cabinet.Demo.ClientConsole
                     case ConsoleKey.D:
                         {
                             s.stop();
+                            break;
+                        }
+                    case ConsoleKey.L:
+                        {
+                            s.doRequestForCabinetList(eqptRoomGuid);
+                            break;
+                        }
+                    case ConsoleKey.U:
+                        {
+                            var o = new UpdateCabinetStatusVO{
+                                cabinetGuid = new Guid(
+                                    "AABF79CB-46E2-4B62-8B28-39D74A70CCA1"),
+                                status = UpdateCabinetStatusVO.idle
+                            };
+                            s.doUpdateCabinetStatus(eqptRoomGuid, o);
+                            break;
+                        }
+                    case ConsoleKey.A:
+                        {
+                            var o = new SendCabinetAuthorizationLogVO
+                            {
+                                cabinetGuid = new Guid(
+                                    "AABF79CB-46E2-4B62-8B28-39D74A70CCA1"),
+                                cabinetAuthorizationLogList = new List<CabinetAuthorizationLogItemVO> {
+                                    new CabinetAuthorizationLogItemVO
+                                    {    
+                                         timeStamp = DateTime.Now,
+                                         cardNumber = "123",
+                                         status = CabinetAuthorizationLogItemVO.OK
+                                    },
+                                    new CabinetAuthorizationLogItemVO
+                                    {    
+                                         timeStamp = DateTime.Now,
+                                         cardNumber = "456",
+                                         status = CabinetAuthorizationLogItemVO.error
+                                    }
+                                }
+                            };
+                            s.doSendCabinetAuthorizationLog(eqptRoomGuid, o);
                             break;
                         }
                     default:
@@ -115,12 +152,12 @@ namespace Cabinet.Demo.ClientConsole
 
         public void onDeliveryCabinetList(DeliveryCabinetListVO deliveryCabinetListVO)
         {
-            throw new NotImplementedException();
+            Logger.info("onDeliveryCabinetList!!!  {0}", deliveryCabinetListVO.toJson());
         }
 
         public void onDeliverySystemUpdate(DeliverySystemUpdateVO deliverySystemUpdateVO)
         {
-            throw new NotImplementedException();
+            Logger.info("onDeliverySystemUpdate!!!  {0}", deliverySystemUpdateVO.toJson());
         }
     }
 

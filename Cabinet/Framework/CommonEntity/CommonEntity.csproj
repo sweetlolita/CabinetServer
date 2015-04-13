@@ -47,6 +47,7 @@
     <Compile Include="BusinessResponse.cs" />
     <Compile Include="CabinetAuthorizationLogItemVO.cs" />
     <Compile Include="CabinetListVO.cs" />
+    <Compile Include="DeliveryCabinetListItemVO.cs" />
     <Compile Include="DeliveryCabinetListVO.cs" />
     <Compile Include="DeliverySystemUpdateVO.cs" />
     <Compile Include="SendCabinetAuthorizationLogVO.cs" />

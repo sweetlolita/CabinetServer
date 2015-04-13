@@ -16,7 +16,7 @@ namespace Cabinet.Framework.CommonModuleEntry
         void updateWiStatusAsChecked(Guid wiGuid);
         void updateWiStatusAsInternalServerError(Guid wiGuid);
 
-        void requestForCabinetList(Guid eqptRoomGuid);
+        string requestForCabinetList(Guid eqptRoomGuid);
 
         void updateCabinetStatusAsIdle(Guid cabinetGuid);
         void updateCabinetStatusAsBusy(Guid cabinetGuid);

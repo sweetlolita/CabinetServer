@@ -26,7 +26,7 @@ namespace Cabinet.Framework.BusinessLayer
                 case "deliveryCabinetList":
                     doDeliveryCabinetList();
                     break;
-                case "systemUpdate":
+                case "deliverySystemUpdate":
                     doDeliverySystemUpdate();
                     break;
                 default:
@@ -39,7 +39,7 @@ namespace Cabinet.Framework.BusinessLayer
         {
             Logger.debug("BusinessServer: business eqptRoom/requestForCabinetList starts.");
             logOnValidatingParams();
-            validateParamCount(3);
+            validateParamCount(2);
             validateParamAsSpecificType(0, typeof(Guid));
             Guid transactionGuid = (Guid)context.request.param.ElementAt<object>(0);
             validateParamAsSpecificType(1, typeof(Guid));
@@ -49,8 +49,17 @@ namespace Cabinet.Framework.BusinessLayer
             {
                 WcfServiceModuleEntry wcfServiceModuleEntry = CommonModuleGateway.getInstance().wcfServiceModuleEntry;
 
-                wcfServiceModuleEntry.requestForCabinetList(eqptRoomGuid);
+                string result = wcfServiceModuleEntry.requestForCabinetList(eqptRoomGuid);
 
+                Logger.debug("BusinessServer: got list from webservice : {0} .", result);
+
+                DeliveryCabinetListVO deliveryCabinetListVO = DeliveryCabinetListVO.fromJson<DeliveryCabinetListVO>(result);
+
+                deliveryCabinetListVO.eqptRoomGuid = eqptRoomGuid;
+
+                Logger.debug("BusinessServer: list parsed, send to client");
+
+                CommonModuleGateway.getInstance().eqptRoomCommModuleEntry.deliveryCabinetList(deliveryCabinetListVO);
             }
             catch (System.Exception ex)
             {
@@ -75,6 +84,7 @@ namespace Cabinet.Framework.BusinessLayer
             Logger.debug("BusinessServer: business eqptRoom/requestForCabinetList ends.");
         }
 
+        //deprecated
         void doDeliveryCabinetList()
         {
             Logger.debug("BusinessServer: business eqptRoom/deliveryCabinetList starts.");

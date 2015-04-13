@@ -9,6 +9,14 @@ namespace Cabinet.Framework.CommonEntity
     public class DeliverySystemUpdateVO : Jsonable
     {
         public Guid eqptRoomGuid { get; set; }
-        public string encryptedBinaryStream { get; set; }
+
+        public string version { get; set; }
+
+        public string encryptedBinary { get; set; }
+
+        public byte[] getBinary()
+        {
+            return Convert.FromBase64String(encryptedBinary);
+        }
     }
 }

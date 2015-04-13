@@ -39,7 +39,7 @@ namespace Cabinet.Bridge.WcfService
 
         public string deliverySystemUpdate(string deliverySystemUpdateObject)
         {
-            baseRequest.method = "deliveryCabinetList";
+            baseRequest.method = "deliverySystemUpdate";
             Logger.debug("WcfServer: comming request = {0}/{1} wiObj = {2}",
                 baseRequest.business, baseRequest.method, deliverySystemUpdateObject);
             logOnPreparingRequest();

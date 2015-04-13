@@ -6,9 +6,9 @@ using Cabinet.Utility;
 
 namespace Cabinet.Framework.CommonEntity
 {
-    public class DeliveryCabinetListVO : Jsonable
+    public class DeliveryCabinetListItemVO : Jsonable
     {
-        public Guid eqptRoomGuid { get; set; }
-        public List<DeliveryCabinetListItemVO> cabList { get; set; }
+        public Guid cabGuid { get; set; }
+        public string cabNum { get; set; }
     }
 }

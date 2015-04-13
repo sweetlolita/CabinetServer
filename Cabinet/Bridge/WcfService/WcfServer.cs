@@ -11,8 +11,8 @@ namespace Cabinet.Bridge.WcfService
 {
     public class WcfServer : WcfServiceModuleEntry
     {
-        private ServiceHost serviceHost;
-
+        private ServiceHost serviceHostWorkInstructionService;
+        private ServiceHost serviceHostEqptRoom;
         private static int contractedWiStatusProceeding = 1;
         private static int contractedWiStatusComplete = 2;
         private static int contractedWiStatusFail = 3;
@@ -26,14 +26,16 @@ namespace Cabinet.Bridge.WcfService
         private static int contractedCabinetStatusError = 4;
         public WcfServer()
         {
-            serviceHost = new ServiceHost(typeof(WorkInstructionService));
+            serviceHostWorkInstructionService = new ServiceHost(typeof(WorkInstructionService));
+            serviceHostEqptRoom = new ServiceHost(typeof(EqptRoomService));
         }
         public void start()
         {
             Logger.debug("WcfServer: starting...");
             try
             {
-                serviceHost.Open();
+                serviceHostWorkInstructionService.Open();
+                serviceHostEqptRoom.Open();
             }
             catch (System.Exception ex)
             {
@@ -47,7 +49,8 @@ namespace Cabinet.Bridge.WcfService
             Logger.debug("WcfServer: stopping...");
             try
             {
-                serviceHost.Close();
+                serviceHostWorkInstructionService.Close();
+                serviceHostEqptRoom.Close();
             }
             catch (System.Exception ex)
             {
@@ -164,14 +167,15 @@ namespace Cabinet.Bridge.WcfService
         }
 
 
-        public void requestForCabinetList(Guid eqptRoomGuid)
+        public string requestForCabinetList(Guid eqptRoomGuid)
         {
             Logger.info("WcfServer: AxisServer =====> WcfServer.");
             Logger.info("WcfServer: WcfServer - - -> Webservice.");
             WebComm.WebServerService webComm = new WebComm.WebServerService();
-            webComm.getCabInfoItem(eqptRoomGuid.ToString());
+            string result =  webComm.getCabInfoItem(eqptRoomGuid.ToString()) as string;
             Logger.info("WcfServer: <3<3<3 Wcf Client Transaction Completed.");
             Logger.info("WcfServer: WcfServer =====> Webservice.");
+            return result;
         }
     }
 }

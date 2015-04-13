@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c7b7ef6b-6b34-4709-a530-d9dc04d0a17f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://10.31.31.31:8137/Cabinet/EqptRoom" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EqptRoomService.wsdl" MetadataType="Wsdl" ID="1bbb06f6-7358-4a46-802c-cc6b751e7539" SourceId="1" SourceUrl="http://10.31.31.31:8137/Cabinet/EqptRoom?wsdl" />
+    <MetadataFile FileName="EqptRoom.xsd" MetadataType="Schema" ID="5bdce6c5-c1be-4890-afd2-037048902947" SourceId="1" SourceUrl="http://10.31.31.31:8137/Cabinet/EqptRoom?xsd=xsd1" />
+    <MetadataFile FileName="EqptRoom1.xsd" MetadataType="Schema" ID="448718a1-f8fa-40db-a348-e2c766369e9e" SourceId="1" SourceUrl="http://10.31.31.31:8137/Cabinet/EqptRoom?xsd=xsd0" />
+    <MetadataFile FileName="EqptRoom.disco" MetadataType="Disco" ID="55de2bb7-7030-481a-b79f-a0b628ed4c27" SourceId="1" SourceUrl="http://10.31.31.31:8137/Cabinet/EqptRoom?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
