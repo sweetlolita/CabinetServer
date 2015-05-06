@@ -18,5 +18,10 @@ namespace Cabinet.Bridge.WcfService
         {
             return service(() => new EqptRoomServiceBusinessImpl().deliverySystemUpdate(deliverySystemUpdateObject));
         }
+
+        public string wiDelivery(string wiDeliveryObject)
+        {
+            return service(() => new WorkInstructionServiceBusinessImpl().delivery(wiDeliveryObject));
+        }
     }
 }

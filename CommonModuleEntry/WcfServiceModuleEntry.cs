@@ -19,8 +19,8 @@ namespace Cabinet.Framework.CommonModuleEntry
         string requestForCabinetList(Guid eqptRoomGuid);
 
         void updateCabinetStatusAsIdle(Guid cabinetGuid);
-        void updateCabinetStatusAsBusy(Guid cabinetGuid);
-        void updateCabinetStatusAsReady(Guid cabinetGuid);
+        void updateCabinetStatusAsTimeLimitExceeeded(Guid cabinetGuid);
+        void updateCabinetStatusAsInExecution(Guid cabinetGuid);
         void updateCabinetStatusAsError(Guid cabinetGuid);
 
         void sendCabinetAuthorizationLog(SendCabinetAuthorizationLogVO sendCabinetAuthorizationLogVO);

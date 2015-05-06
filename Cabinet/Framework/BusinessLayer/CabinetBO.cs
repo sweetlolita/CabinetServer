@@ -54,11 +54,11 @@ namespace Cabinet.Framework.BusinessLayer
                     case UpdateCabinetStatusVO.idle:
                         wcfServiceModuleEntry.updateCabinetStatusAsIdle(updateCabinetStatusVO.cabinetGuid);
                         break;
-                    case UpdateCabinetStatusVO.busy:
-                        wcfServiceModuleEntry.updateCabinetStatusAsBusy(updateCabinetStatusVO.cabinetGuid);
+                    case UpdateCabinetStatusVO.timeLimitExceeeded:
+                        wcfServiceModuleEntry.updateCabinetStatusAsTimeLimitExceeeded(updateCabinetStatusVO.cabinetGuid);
                         break;
-                    case UpdateCabinetStatusVO.ready:
-                        wcfServiceModuleEntry.updateCabinetStatusAsReady(updateCabinetStatusVO.cabinetGuid);
+                    case UpdateCabinetStatusVO.inExecution:
+                        wcfServiceModuleEntry.updateCabinetStatusAsInExecution(updateCabinetStatusVO.cabinetGuid);
                         break;
                     case UpdateCabinetStatusVO.error:
                         wcfServiceModuleEntry.updateCabinetStatusAsError(updateCabinetStatusVO.cabinetGuid);

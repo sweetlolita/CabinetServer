@@ -16,5 +16,8 @@ namespace Cabinet.Bridge.WcfService
 
         [OperationContract]
         string deliverySystemUpdate(string deliverySystemUpdateObject);
+
+        [OperationContract]
+        string wiDelivery(string wiDeliveryObject);
     }
 }

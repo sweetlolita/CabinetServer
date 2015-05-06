@@ -16,17 +16,17 @@ namespace Cabinet.Bridge.WcfService
         private static int contractedWiStatusProceeding = 1;
         private static int contractedWiStatusComplete = 2;
         private static int contractedWiStatusFail = 3;
-        private static int contractedWiStatusDelivered = 4;
-        private static int contractedWiStatusChecked = 5;
+        private static int contractedWiStatusChecked = 4;
+        private static int contractedWiStatusDelivered = 5;
         private static int contractedWiStatusInternalServerError = 6;
 
         private static int contractedCabinetStatusIdle = 1;
-        private static int contractedCabinetStatusBusy = 3;
-        private static int contractedCabinetStatusReady = 2;
+        private static int contractedCabinetStatusTimeLimitExceeeded = 2;
+        private static int contractedCabinetStatusInExecution = 3;
         private static int contractedCabinetStatusError = 4;
         public WcfServer()
         {
-            serviceHostWorkInstructionService = new ServiceHost(typeof(WorkInstructionService));
+            //serviceHostWorkInstructionService = new ServiceHost(typeof(WorkInstructionService));
             serviceHostEqptRoom = new ServiceHost(typeof(EqptRoomService));
         }
         public void start()
@@ -34,7 +34,7 @@ namespace Cabinet.Bridge.WcfService
             Logger.debug("WcfServer: starting...");
             try
             {
-                serviceHostWorkInstructionService.Open();
+                //serviceHostWorkInstructionService.Open();
                 serviceHostEqptRoom.Open();
             }
             catch (System.Exception ex)
@@ -49,7 +49,7 @@ namespace Cabinet.Bridge.WcfService
             Logger.debug("WcfServer: stopping...");
             try
             {
-                serviceHostWorkInstructionService.Close();
+                //serviceHostWorkInstructionService.Close();
                 serviceHostEqptRoom.Close();
             }
             catch (System.Exception ex)
@@ -129,14 +129,14 @@ namespace Cabinet.Bridge.WcfService
             reportCabinetStatus(cabinetGuid, contractedCabinetStatusIdle);
         }
 
-        public void updateCabinetStatusAsBusy(Guid cabinetGuid)
+        public void updateCabinetStatusAsTimeLimitExceeeded(Guid cabinetGuid)
         {
-            reportCabinetStatus(cabinetGuid, contractedCabinetStatusBusy);
+            reportCabinetStatus(cabinetGuid, contractedCabinetStatusTimeLimitExceeeded);
         }
 
-        public void updateCabinetStatusAsReady(Guid cabinetGuid)
+        public void updateCabinetStatusAsInExecution(Guid cabinetGuid)
         {
-            reportCabinetStatus(cabinetGuid, contractedCabinetStatusReady);
+            reportCabinetStatus(cabinetGuid, contractedCabinetStatusInExecution);
         }
 
         public void updateCabinetStatusAsError(Guid cabinetGuid)
