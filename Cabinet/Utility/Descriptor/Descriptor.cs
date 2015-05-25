@@ -34,7 +34,13 @@ namespace Cabinet.Utility
 
         public void append(byte[] src, int srcIndex, int copyLength)
         {
-            this.copy(this.desLength, des, srcIndex, copyLength);
+            this.copy(this.desLength, src, srcIndex, copyLength);
+        }
+
+        public void truncate(int startIndex, int count)
+        {
+            this.copy(0, des, startIndex, count);
+            desLength = count;
         }
 
         public void clear()

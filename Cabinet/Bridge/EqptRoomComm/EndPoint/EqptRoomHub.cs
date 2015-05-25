@@ -90,7 +90,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             Guid sessionGuid = eqptRoomClientMap.searchSessionGuid(eqptRoomGuid);
             if (sessionGuid == Guid.Empty)
             {
-                throw new EqptRoomCommException("cannot find session");
+                throw new EqptRoomCommException("cannot find session, target is probably not registered.");
             }
             else
             {
@@ -115,7 +115,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             Logger.debug("EqptRoomHubBusiness: eqpt room guid {0} request register.",
                 register.eqptRoomGuid);
             eqptRoomClientMap.put(register.eqptRoomGuid, sessionId);
-            acknowledge(register.trasactionGuid, register.eqptRoomGuid, 200, "OK");
+            acknowledge(register.transactionGuid, register.eqptRoomGuid, 200, "OK");
             Logger.debug("EqptRoomHubBusiness: eqpt room guid {0} register complete.",
                 register.eqptRoomGuid);
         }

@@ -100,7 +100,9 @@ namespace Cabinet.Bridge.EqptRoomComm.Protocol.Parser
             catch (System.Exception ex)
             {
                 Logger.error("EqptRoomHub: corrupted data {0}, from session {1}, error: {2}",
-                    sessionId, descriptor.des.ToString(), ex.Message);
+                    BitConverter.ToString(descriptor.des, 0, descriptor.desLength),
+                    sessionId,
+                    ex.Message);
                 
             }
         }

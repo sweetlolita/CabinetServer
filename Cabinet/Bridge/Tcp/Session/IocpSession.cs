@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Net;
@@ -18,20 +17,13 @@ namespace Cabinet.Bridge.Tcp.Session
         private IocpSendAction sendAction { get; set; }
         private IocpReceiveAction recvAction { get; set; }
         private IocpSessionObserver observer { get; set; }
-        private ConcurrentQueue<Descriptor> sendQueue { get; set; }
-        private int sendQueueStatus;
-        private static int sendQueueIdle = 0;
-        private static int sendQueueRunning = 1;
-        private void clearSendQueue()
-        {
-            Descriptor ignored;
-            while (sendQueue.TryDequeue(out ignored)) { };
-        }
+        private IocpSessionFrameBuffer frameBuffer { get; set; }
 
         public IocpSession(IocpSessionObserver observer)
         {
             socket = null;
             sessionId = Guid.Empty;
+            
             this.observer = observer;
             sendAction = new IocpSendAction(
                 ((bytesSent) => this.onIocpSendActionEvent(bytesSent)),
@@ -39,8 +31,8 @@ namespace Cabinet.Bridge.Tcp.Session
             recvAction = new IocpReceiveAction(
                 (descriptor) => this.onIocpReceiveActionEvent(descriptor),
                 ((errorMessage) => { observer.onSessionError(sessionId, errorMessage); }));
-            sendQueue = new ConcurrentQueue<Descriptor>();
-            sendQueueStatus = sendQueueIdle;
+            frameBuffer = new IocpSessionFrameBuffer();
+
             Logger.debug("IocpSession: constructed.");
         }
 
@@ -66,7 +58,7 @@ namespace Cabinet.Bridge.Tcp.Session
                 recvAction.detachSocket();
                 socket.Close();
                 socket = null;
-                clearSendQueue();
+                frameBuffer.resetBuffer();
             }
             
         }
@@ -89,7 +81,14 @@ namespace Cabinet.Bridge.Tcp.Session
                     BitConverter.ToString(descriptor.des, 0, descriptor.desLength),
                     System.Text.Encoding.ASCII.GetString(descriptor.des, 0, descriptor.desLength));
                  */
-                digest(descriptor);
+                frameBuffer.putReceiveDataStream(descriptor);
+                Descriptor newFrame = frameBuffer.getReceivedFrameIfHasOne();
+                while (newFrame != null)
+                {
+                    digest(newFrame);
+                    newFrame = frameBuffer.getReceivedFrameIfHasOne();
+                }
+                
             }
         }
 
@@ -106,26 +105,19 @@ namespace Cabinet.Bridge.Tcp.Session
 
         public void send(byte[] buffer, int offset, int count)
         {
-            DescriptorBuffer descriptorBuffer = DescriptorBuffer.create(buffer, offset, count, count);
-            sendQueue.Enqueue(descriptorBuffer);
+            frameBuffer.putSendStream(buffer, offset, count);
 
-            if (Interlocked.CompareExchange(ref sendQueueStatus, sendQueueRunning, sendQueueIdle) == sendQueueIdle)
-            {
-                sendNextItem();
-            }
-            
+            sendNextItem();
+
         }
 
         private void sendNextItem()
         {
             Descriptor sendBuffer;
-            if (sendQueue.TryDequeue(out sendBuffer) == true)
+            sendBuffer = frameBuffer.getSendFrameIfHasOne();
+            if(sendBuffer != null)
             {
                 sendAction.send(sendBuffer.des, 0, sendBuffer.desLength);
-            }
-            else
-            {
-                sendQueueStatus = sendQueueIdle;
             }
         }
 

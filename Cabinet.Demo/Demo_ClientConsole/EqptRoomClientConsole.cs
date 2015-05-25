@@ -18,7 +18,7 @@ namespace Cabinet.Demo.ClientConsole
         {
             eqptRoomGuid = new Guid("53840397-DD43-4CD9-9852-0BBA443FF6CD");
             s = new EqptRoomClient(this,
-                "10.148.219.165", 6382, "10.148.219.165", 8135);
+                "127.0.0.1", 6382, "127.0.0.1", 8135);
             s.start();
 
             ConsoleKeyInfo ch;
@@ -92,7 +92,7 @@ namespace Cabinet.Demo.ClientConsole
         public void onAcknowledge(Acknowledge acknowledge)
         {
             Logger.debug("transaction {0} returns result {1} with message {2} in EqptRoom {3}",
-                acknowledge.trasactionGuid,
+                acknowledge.transactionGuid,
                 acknowledge.statusCode,
                 acknowledge.message,
                 acknowledge.eqptRoomGuid);

@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistenceLayer", "Cabinet\Framework\PersistenceLayer\PersistenceLayer.csproj", "{9F64D17B-4DC7-426A-8A96-B6D9B591FA17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT_CommonEntity", "Cabinet.Test\UT_CommonEntity\UT_CommonEntity.csproj", "{FE6BB157-C332-45FA-93A0-163053106436}"
+	ProjectSection(ProjectDependencies) = postProject
+		{541545EB-A200-42D7-AC29-909A7A4C226F} = {541545EB-A200-42D7-AC29-909A7A4C226F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT_PersistenceLayer", "Cabinet.Test\UT_PersistenceLayer\UT_PersistenceLayer.csproj", "{152AC090-3952-4758-BEA9-9478F222CAF7}"
 EndProject

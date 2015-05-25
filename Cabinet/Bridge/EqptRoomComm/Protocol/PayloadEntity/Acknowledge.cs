@@ -13,7 +13,7 @@ namespace Cabinet.Bridge.EqptRoomComm.Protocol.PayloadEntity
 
         public Acknowledge(Guid transactionGuid)
         {
-            this.trasactionGuid = trasactionGuid;
+            this.transactionGuid = transactionGuid;
         }
     }
 }

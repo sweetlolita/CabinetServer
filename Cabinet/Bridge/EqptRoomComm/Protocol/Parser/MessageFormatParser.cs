@@ -28,18 +28,26 @@ namespace Cabinet.Bridge.EqptRoomComm.Protocol.Parser
             byte[] pattern = new byte[] { (byte)'\r', (byte)'\n' };
             lineEnds = BytesHelper.indexOf(descriptor.des, 0, descriptor.desLength, pattern);
             lineEndsCount = lineEnds.Count<int>();
-
+            Logger.debug("MessageFormatParser: parsing new request. lineEndsCount={0}, lineEnds=[{1}]",
+                lineEndsCount,
+                string.Join(",", lineEnds));
         }
 
         public bool parseIfHasNext()
         {
             if (lineEndsIndex > lineEndsCount)
             {
-                throw new EqptRoomCommException("corrupted message.");
+                throw new EqptRoomCommException("parsing system error.");
             }
-            if(lineEndsIndex == lineEndsCount)
+            if (lineEndsIndex == lineEndsCount)
             {
                 return false;
+            }
+            if (lineEndsIndex + lineEndsInEachMessage > lineEndsCount)
+            {
+                throw new EqptRoomCommException(
+                    "corrupted message. not enough lines , " 
+                    + (lineEndsCount - lineEndsIndex) + " ends left.");
             }
 
             int payloadOffset = lineEndsIndex == 0 ?

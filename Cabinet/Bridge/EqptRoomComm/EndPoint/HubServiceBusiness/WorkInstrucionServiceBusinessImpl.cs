@@ -21,7 +21,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             Logger.debug("EqptRoomHub: comming request = {0}/{1} wiObj = {2}",
                 baseRequest.business, baseRequest.method, reportWiProcedureResultTransactionVO.toJson());
 
-            baseRequest.param.Add(reportWiProcedureResultTransactionVO.trasactionGuid);
+            baseRequest.param.Add(reportWiProcedureResultTransactionVO.transactionGuid);
             baseRequest.param.Add(reportWiProcedureResultTransactionVO.eqptRoomGuid);
             baseRequest.param.Add(reportWiProcedureResultTransactionVO.reportWiProcedureResultVO);
 
@@ -36,7 +36,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             Logger.debug("EqptRoomHub: comming request = {0}/{1} wiObj = {2}",
                 baseRequest.business, baseRequest.method, updateWiStatusTransactionVO.toJson());
 
-            baseRequest.param.Add(updateWiStatusTransactionVO.trasactionGuid);
+            baseRequest.param.Add(updateWiStatusTransactionVO.transactionGuid);
             baseRequest.param.Add(updateWiStatusTransactionVO.eqptRoomGuid);
             baseRequest.param.Add(updateWiStatusTransactionVO.updateWiStatusVO);
 

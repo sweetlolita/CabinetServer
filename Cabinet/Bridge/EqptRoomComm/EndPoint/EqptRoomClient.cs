@@ -110,7 +110,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             RegisterMessage registerMessage = new RegisterMessage(registerEntity);
             byte[] registerBytes = registerMessage.rawBytes();
             tcpClient.send(registerBytes, 0, registerBytes.Length);
-            return registerEntity.trasactionGuid;
+            return registerEntity.transactionGuid;
         }
 
         public override sealed Guid doUpdateWiStatus(Guid eqptRoomGuid, UpdateWiStatusVO updateWiStatusVO)
@@ -121,7 +121,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             UpdateWiStatusMessage workInstructionReportMessage = new UpdateWiStatusMessage(updateWiStatusTransactionVO);
             byte[] updateWiStatusBytes = workInstructionReportMessage.rawBytes();
             tcpClient.send(updateWiStatusBytes, 0, updateWiStatusBytes.Length);
-            return updateWiStatusTransactionVO.trasactionGuid;
+            return updateWiStatusTransactionVO.transactionGuid;
         }
 
 
@@ -134,7 +134,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             ReportWiProcedureResultMessage workInstructionProcedureReportMessage = new ReportWiProcedureResultMessage(reportWiProcedureResultTransactionVO);
             byte[] reportWiProcedureResultBytes = workInstructionProcedureReportMessage.rawBytes();
             tcpClient.send(reportWiProcedureResultBytes, 0, reportWiProcedureResultBytes.Length);
-            return reportWiProcedureResultTransactionVO.trasactionGuid;
+            return reportWiProcedureResultTransactionVO.transactionGuid;
         }
 
         public override sealed Guid doUpdateCabinetStatus(Guid eqptRoomGuid, UpdateCabinetStatusVO updateCabinetStatusVO)
@@ -145,7 +145,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             UpdateCabinetStatusMessage updateCabinetStatusMessage = new UpdateCabinetStatusMessage(updateCabinetStatusTransactionVO);
             byte[] updateCabinetStatusBytes = updateCabinetStatusMessage.rawBytes();
             tcpClient.send(updateCabinetStatusBytes, 0, updateCabinetStatusBytes.Length);
-            return updateCabinetStatusTransactionVO.trasactionGuid;
+            return updateCabinetStatusTransactionVO.transactionGuid;
         }
 
         public override sealed Guid doSendCabinetAuthorizationLog(Guid eqptRoomGuid, SendCabinetAuthorizationLogVO sendCabinetAuthorizationLogVO)
@@ -156,7 +156,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             SendCabinetAuthorizationLogMessage sendCabinetAuthorizationLogMessage = new SendCabinetAuthorizationLogMessage(sendCabinetAuthorizationLogTransactionVO);
             byte[] sendCabinetAuthorizationLogBytes = sendCabinetAuthorizationLogMessage.rawBytes();
             tcpClient.send(sendCabinetAuthorizationLogBytes, 0, sendCabinetAuthorizationLogBytes.Length);
-            return sendCabinetAuthorizationLogTransactionVO.trasactionGuid;
+            return sendCabinetAuthorizationLogTransactionVO.transactionGuid;
         }
 
         public override sealed Guid doRequestForCabinetList(Guid eqptRoomGuid)
@@ -166,7 +166,7 @@ namespace Cabinet.Bridge.EqptRoomComm.EndPoint
             RequestForCabinetListMessage requestForCabinetListMessage = new RequestForCabinetListMessage(requestForCabinetListTransactionVO);
             byte[] requestForCabinetListBytes = requestForCabinetListMessage.rawBytes();
             tcpClient.send(requestForCabinetListBytes, 0, requestForCabinetListBytes.Length);
-            return requestForCabinetListTransactionVO.trasactionGuid;
+            return requestForCabinetListTransactionVO.transactionGuid;
         }
 
 
